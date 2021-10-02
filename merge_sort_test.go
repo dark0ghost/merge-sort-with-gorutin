@@ -13,15 +13,15 @@ func (v Int) Compare(value interface{}) bool{
 
 func TestCompare(t *testing.T) {
 	var text []cre.Compare
-	text = []cre.Compare{Int(8), Int(1), Int(5), Int(7)}
-	err := MergeSort(&text)
-	if err != nil {
-		for _,i := range text {
-			fmt.Println(i)
-		}
-		return
+	text = []cre.Compare{Int(8), Int(1), Int(5), Int(7), Int(8), Int(10)}
+	value, err := MergeSort(text)
+	if err != nil{
+		t.Fail()
 	}
-	t.Fail()
+	for _, i := range value {
+		fmt.Println(i)
+	}
+	return
 }
 
 
