@@ -6,11 +6,12 @@ Golang program for implementation of Merge Sort with gorutin
 
 use:
 ```go
-
 type Int int
+
 func (v Int) Compare(value interface{}) bool{
 	return v < value.(Int)
 }
+
 func main(){
   var text []cre.Compare
 	text = []cre.Compare{Int(8), Int(1), Int(5), Int(7), Int(8), Int(10)}
