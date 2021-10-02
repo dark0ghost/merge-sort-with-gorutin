@@ -1,7 +1,6 @@
 package merge_sort
 
 import (
-	"fmt"
 	cre "merge_sort/compare"
 	"testing"
 )
@@ -14,12 +13,15 @@ func (v Int) Compare(value interface{}) bool{
 func TestCompare(t *testing.T) {
 	var text []cre.Compare
 	text = []cre.Compare{Int(8), Int(1), Int(5), Int(7), Int(8), Int(10)}
+	result := []int{1, 5, 7, 8, 8, 10}
 	value, err := MergeSort(text)
-	if err != nil{
+	if err != nil {
 		t.Fail()
 	}
-	for _, i := range value {
-		fmt.Println(i)
+	for num, i := range value {
+        if i != Int(result[num]){
+			t.Fail()
+		}
 	}
 	return
 }

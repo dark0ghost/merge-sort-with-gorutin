@@ -13,10 +13,11 @@ func merge(left, right  []cre.Compare) (buffer []cre.Compare) {
 		if left[0].Compare(right[0]) {
 			buffer[i] = left[0]
 			left = left[1:]
-		} else {
+			i++
+			continue
+		}
 			buffer[i] = right[0]
 			right = right[1:]
-		}
 		i++
 	}
 	for j := 0; j < len(left); j++ {
