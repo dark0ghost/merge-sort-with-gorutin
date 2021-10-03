@@ -15,13 +15,6 @@ jobs:
         PUBLISH_BRANCH: gh-pages
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-  cibuild:
-    name: cibuild
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - run: script/generate --check
-      - run: script/lint
   text-bench:
     runs-on: ubuntu-20.04
     steps:
