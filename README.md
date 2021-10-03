@@ -21,7 +21,7 @@ func toCompareArray(array []int) (buffer []cre.Compare){
 }
 
 func main(){
-        var test []cre.Compare
+  var test []cre.Compare
 	test := toCompareArray([]int{1,3,9,6,34,21,12})
 	value, err := MergeSort(test)
 	if err != nil{

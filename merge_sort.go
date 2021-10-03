@@ -1,6 +1,7 @@
 package merge_sort
 
 import (
+	"fmt"
 	cre "merge_sort/compare"
 	ce "merge_sort/error"
 	"sync"
@@ -36,8 +37,8 @@ func MergeSort(array []cre.Compare) ([]cre.Compare,error) {
 	if array == nil{
 		return array, ce.NilPointerError("array is nil")
 	}
-	if sizeArray == 1 {
-		return array, ce.SizeError("array size 1")
+	if sizeArray <= 1 {
+		return array, ce.SizeError(fmt.Sprintf("array size %d", sizeArray))
 	}
 	wg := sync.WaitGroup{}
 	middle := sizeArray / 2
