@@ -7,7 +7,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
     - name: gobenchdata publish
-      uses: dark0ghost/gobenchdata@v1.0.1-beta2
+      uses: dark0ghost/gobenchdata@v1.0.1-beta3
       with:
         PRUNE_COUNT: 100
         GO_TEST_FLAGS: -cpu 1,2
