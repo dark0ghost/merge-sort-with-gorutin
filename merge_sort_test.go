@@ -18,10 +18,10 @@ func toCompareArray(array []int) (buffer []cre.Compare){
 }
 
 func TestCompare(t *testing.T) {
-	var text []cre.Compare
-	text = []cre.Compare{Int(8), Int(1), Int(5), Int(7), Int(8), Int(10)}
+	var test []cre.Compare
+	test = []cre.Compare{Int(8), Int(1), Int(5), Int(7), Int(8), Int(10)}
 	result := []int{1, 5, 7, 8, 8, 10}
-	value, err := MergeSort(text)
+	value, err := MergeSort(test)
 	if err != nil {
 		t.Fail()
 	}
