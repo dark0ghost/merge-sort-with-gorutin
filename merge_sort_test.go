@@ -2,6 +2,7 @@ package merge_sort
 
 import (
 	cre "merge_sort/compare"
+	e "merge_sort/error"
 	"testing"
 )
 
@@ -11,6 +12,7 @@ func (v Int) Compare(value interface{}) bool{
 }
 
 func toCompareArray(array []int) (buffer []cre.Compare){
+	buffer = []cre.Compare{}
 	for _, i := range array {
 		buffer = append(buffer, Int(i))
 	}
@@ -33,6 +35,55 @@ func TestCompare(t *testing.T) {
 	return
 }
 
+func TestNilError(t *testing.T) {
+	var test []cre.Compare
+	_, err := MergeSort(test)
+	if err == nil {
+		t.Fail()
+	}
+	switch err.(type) {
+	case e.NilPointerError:
+		return
+	case e.SizeError:
+		t.Fail()
+	default:
+		t.Fail()
+	}
+}
+
+func TestSizeErrorOneLength(t *testing.T) {
+	var test []cre.Compare
+	test = toCompareArray([]int{1})
+	_, err := MergeSort(test)
+	if err == nil {
+		t.Fail()
+	}
+	switch err.(type) {
+	case e.NilPointerError:
+		t.Fail()
+	case e.SizeError:
+		return
+	default:
+		t.Fail()
+	}
+}
+
+func TestSizeErrorZeroLength(t *testing.T) {
+	var test []cre.Compare
+	test = toCompareArray([]int{})
+	_, err := MergeSort(test)
+	if err == nil {
+		t.Fail()
+	}
+	switch err.(type) {
+	case e.NilPointerError:
+		t.Fail()
+	case e.SizeError:
+		return
+	default:
+		t.Fail()
+	}
+}
 
 func BenchmarkMergeSort(b *testing.B) {
 	testData := toCompareArray([]int{1,3,9,6,34,21,12,3,4,5,63,23,4,234,2,121,2,3,4,6,5,990,65,652,2,3,423,4})
