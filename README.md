@@ -13,7 +13,7 @@ func (v Int) Compare(value interface{}) bool{
 }
 
 func main(){
-  var text []cre.Compare
+    var text []cre.Compare
 	text = []cre.Compare{Int(8), Int(1), Int(5), Int(7), Int(8), Int(10)}
 	value, err := MergeSort(text)
 	if err != nil{
