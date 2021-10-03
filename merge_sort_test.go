@@ -92,3 +92,10 @@ func BenchmarkMergeSort(b *testing.B) {
 	}
 }
 
+func BenchmarkMergeSort(b *testing.B) {
+	testData := toCompareArray([]int{1,3,9,6,34,21,12,3,4,5,63,23,4,234,2,121,2,3,4,6,5,990,65,652,2,3,423,4})
+	for i := 0; i < b.N; i++ {
+		MergeSort(testData)
+	}
+}
+

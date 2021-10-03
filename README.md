@@ -12,10 +12,18 @@ func (v Int) Compare(value interface{}) bool{
 	return v < value.(Int)
 }
 
+func toCompareArray(array []int) (buffer []cre.Compare){
+        buffer = []cre.Compare{}
+	for _, i := range array {
+		buffer = append(buffer, Int(i))
+	}
+	return
+}
+
 func main(){
-    var text []cre.Compare
-	text = []cre.Compare{Int(8), Int(1), Int(5), Int(7), Int(8), Int(10)}
-	value, err := MergeSort(text)
+  var test []cre.Compare
+	test := toCompareArray([]int{1,3,9,6,34,21,12})
+	value, err := MergeSort(test)
 	if err != nil{
 		// chechk error
 	}
