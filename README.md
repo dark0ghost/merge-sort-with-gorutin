@@ -7,7 +7,7 @@
 
 ***Golang program for implementation of Merge Sort with gorutin***
 
-use:
+## Use
 ```go
 type Int int
 
