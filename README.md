@@ -13,6 +13,7 @@ func (v Int) Compare(value interface{}) bool{
 }
 
 func toCompareArray(array []int) (buffer []cre.Compare){
+        buffer = []cre.Compare{}
 	for _, i := range array {
 		buffer = append(buffer, Int(i))
 	}
