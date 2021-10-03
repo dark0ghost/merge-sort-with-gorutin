@@ -6,63 +6,55 @@ import (
 	"sync"
 )
 
-func merge(af, ad  []cre.Compare, buffer *[]cre.Compare) {
-	var i, j, k int
-	saf := len(af)
-	sad := len(ad)
-	for ; i < saf && j < sad; k++ {
-		raf := af[i]
-		rad := ad[j]
-		if raf.Compare(rad) && raf == rad {
-			*buffer = append(*buffer, af[i])
-			k++
-			continue
+func merge(left, right  []cre.Compare) (buffer []cre.Compare) {
+	var i int
+	buffer = make([]cre.Compare, len(left) + len(right))
+	for len(left) > 0 && len(right) > 0 {
+		if left[0].Compare(right[0]) {
+			buffer[i] = left[0]
+			left = left[1:]
+		} else {
+			buffer[i] = right[0]
+			right = right[1:]
 		}
-		if !raf.Compare(rad) {
-			*buffer = append(*buffer, ad[i])
-			k++
-			continue
-		}
-		k++
-	}
-	for i < saf {
-		*buffer = append(*buffer, af[i])
 		i++
 	}
-	for j < sad {
-		*buffer = append(*buffer, ad[i])
-		j++
+	for j := 0; j < len(left); j++ {
+		buffer[i] = left[j]
+		i++
 	}
+	for j := 0; j < len(right); j++ {
+		buffer[i] = right[j]
+		i++
+	}
+	return
 }
 
-func MergeSort(array* []cre.Compare) error {
-	if array != nil {
-		sizeArray := len(*array)
-		if sizeArray > 1 {
-			wg := sync.WaitGroup{}
-			var result []cre.Compare
-			hsa := sizeArray / 2
-			a1 := (*array)[0:hsa]
-			a2 := (*array)[hsa:sizeArray]
-			go func() {
-				defer wg.Done()
-				err := MergeSort(&a1)
-				if err != nil {
-
-				}
-			}()
-			go func() {
-				defer wg.Done()
-				err := MergeSort(&a2)
-				if err != nil {
-
-				}
-			}()
-			wg.Wait()
-			go merge(a1, a2, &result)
-			array = &result
-		}
-		return ce.SizeError("array size <= 1")
+func MergeSort(array []cre.Compare) ([]cre.Compare,error) {
+	sizeArray := len(array)
+	if array == nil{
+		return array, ce.NilPointerError("array is nil")
 	}
-	return ce.NilPointerError("array is nil")
+	if sizeArray == 1 {
+		return array, ce.SizeError("array size 1")
+	}
+	wg := sync.WaitGroup{}
+	middle := sizeArray / 2
+	var (
+		left  = array[0:middle]
+		right = array[middle:sizeArray]
+	)
+	var ln, rn []cre.Compare
+	wg.Add(2)
+	 func() {
+		defer wg.Done()
+		ln, _ = MergeSort(left)
+	}()
+	 func() {
+		defer wg.Done()
+		rn, _ = MergeSort(right)
+	}()
+	wg.Wait()
+	return merge(ln, rn), nil
+
 }
