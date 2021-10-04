@@ -1,5 +1,5 @@
 # Merge sort on go with gorutin
-[![CodeQL](https://github.com/dark0ghost/merge_sort/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/dark0ghost/merge_sort/actions/workflows/codeql-analysis.yml)
+[![Go](https://github.com/dark0ghost/merge_sort/actions/workflows/go.yml/badge.svg)](https://github.com/dark0ghost/merge_sort/actions/workflows/go.yml)
 [![CodeQL](https://github.com/dark0ghost/merge_sort/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/dark0ghost/merge_sort/actions/workflows/codeql-analysis.yml)
 [![gobenchdata publish](https://github.com/dark0ghost/merge_sort/actions/workflows/go_bench.yml/badge.svg?branch=main)](https://github.com/dark0ghost/merge_sort/actions/workflows/go_bench.yml)
 
