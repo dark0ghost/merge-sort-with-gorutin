@@ -48,11 +48,11 @@ func MergeSort(array []cre.Compare) ([]cre.Compare,error) {
 	)
 	var ln, rn []cre.Compare
 	wg.Add(2)
-	 func() {
+	go func() {
 		defer wg.Done()
 		ln, _ = MergeSort(left)
 	}()
-	 func() {
+	go func() {
 		defer wg.Done()
 		rn, _ = MergeSort(right)
 	}()
